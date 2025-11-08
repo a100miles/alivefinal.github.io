@@ -1,0 +1,115 @@
+/* === ПРИОРИТЕТ ШРИФТА === */
+html, body, .navbar, .btn, h1, h2, h3, h4, h5, p, li, a {
+    font-family: "Zalando Sans Expanded", sans-serif !important;
+}
+
+/* === Остальное === */
+:root {
+    --background-color: black;
+    --text-color: #ffffff;
+    --accent-color: #ffd608;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+@keyframes pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
+
+/* Preloader */
+#preloader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #000; display: flex; align-items: center; justify-content: center;
+    z-index: 9999; transition: opacity 0.5s;
+}
+.loader-text {
+    color: var(--accent-color); font-size: 2.5rem; font-weight: 700;
+    animation: pulse 1.5s infinite;
+}
+
+/* Navbar */
+.nav-header {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s;
+    padding: 5px 10px;
+}
+.nav-content { max-width: 1200px; margin: 0 auto; }
+.logo { font-size: 1.5rem; font-weight: 600; color: var(--text-color); }
+.nav-links a {
+    color: var(--text-color); text-decoration: none;
+    margin: 0 15px; font-size: 1rem; font-weight: 400;
+    transition: color 0.3s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--accent-color); }
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Hero */
+.home-console {
+    position: relative; height: 100vh; display: flex;
+    align-items: center; justify-content: center; text-align: center;
+    overflow: hidden;
+}
+.image-console {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: -1;
+}
+.home-content {
+    font-size: 3rem; font-weight: 700; letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+/* Album Section — КОМПАКТНО */
+.main-section {
+    padding: 60px 20px;
+    text-align: center;
+}
+.main-section h2 {
+    font-size: 2.5rem; font-weight: 400; margin-bottom: 30px;
+    color: var(--text-color);
+}
+.gallery-video {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+.tracks { color: rgb(173, 15, 15); }
+
+/* Button */
+.about-button {
+    font-family: "Zalando Sans Expanded", sans-serif !important;
+    color: rgb(173, 15, 15); padding: 12px 24px;
+    border: 2px solid rgb(173, 15, 15); background: transparent;
+    border-radius: 6px; font-weight: 600; transition: all 0.3s;
+}
+.about-button:hover {
+    background: rgb(173, 15, 15); color: white;
+}
+
+/* Countdown */
+.countdown-box {
+    transition: transform 0.3s;
+}
+.countdown-box:hover {
+    transform: scale(1.1);
+}
+
+/* Social */
+.hover-accent { transition: color 0.3s; }
+.hover-accent:hover { color: var(--accent-color) !important; }
+
+/* Animations */
+.animate-on-scroll {
+    opacity: 0; transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+.animate-on-scroll.animated {
+    opacity: 1; transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .main-section .row { flex-direction: column; }
+    .gallery-video { max-height: 300px; }
+}
