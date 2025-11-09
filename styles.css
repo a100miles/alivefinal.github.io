@@ -119,3 +119,115 @@ html, body, .navbar, .btn, h1, h2, h3, h4, h5, p, li, a {
 @media (max-width: 576px) {
     .gallery-thumb { height: 180px; }
 }
+
+.custom-player-container {
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+#play-pause-btn {
+    width: 50px; height: 50px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+#play-pause-btn:hover {
+    background: rgba(220, 53, 69, 0.2);
+    transform: scale(1.05);
+}
+
+.progress {
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.progress-bar {
+    background: rgb(173, 15, 15);
+    transition: width 0.1s linear;
+}
+
+.play-track {
+    background: rgba(255,255,255,0.05);
+    border: none;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+.play-track::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.6s;
+}
+.play-track:hover::before, .play-track.active::before {
+    left: 100%;
+}
+.play-track:hover, .play-track.active {
+    background: rgba(173, 15, 15, 0.15) !important;
+    transform: translateX(5px);
+}
+.play-track.active span:last-child i {
+    color: rgb(173, 15, 15);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.about-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-bg-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 15%,
+        black 85%,
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 15%,
+        black 85%,
+        transparent 100%
+    );
+}
+
+.about-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+    backdrop-filter: blur(2px);
+}
+
+.about-content h2,
+.about-content p,
+.about-content .about-button {
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .about-content {
+        padding: 0 20px;
+    }
+    .about-content h2 {
+        font-size: 2.5rem;
+    }
+}

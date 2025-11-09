@@ -46,24 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", animateOnScroll);
     animateOnScroll();
 
-    const audioPlayer = document.getElementById("main-audio");
-    const playButtons = document.querySelectorAll(".play-track");
-    const trackTitle = document.getElementById("track-title");
-
-    if (playButtons.length > 0) {
-        playButtons.forEach(btn => {
-            btn.addEventListener("click", () => {
-                const src = btn.getAttribute("data-src");
-                const title = btn.getAttribute("data-title");
-                audioPlayer.src = src;
-                trackTitle.textContent = title;
-                audioPlayer.play();
-                playButtons.forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-            });
-        });
-    }
-
     const countdownDate = new Date("2025-12-25T00:00:00").getTime();
     const countdownFunction = setInterval(() => {
         const now = new Date().getTime();
@@ -86,5 +68,82 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.querySelectorAll('.gallery-thumb').forEach((img, index) => {
         img.style.transitionDelay = `${index * 0.1}s`;
+    });
+
+    const audio = document.getElementById("main-audio");
+    const playPauseBtn = document.getElementById("play-pause-btn");
+    const progressBar = document.getElementById("progress-bar");
+    const progressFill = progressBar.querySelector(".progress-bar");
+    const currentTimeEl = document.getElementById("current-time");
+    const durationEl = document.getElementById("duration");
+    const trackTitle = document.getElementById("track-title");
+    const playButtons = document.querySelectorAll(".play-track");
+
+    let isPlaying = false;
+
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function updateProgress() {
+        if (audio.duration) {
+            const percent = (audio.currentTime / audio.duration) * 100;
+            progressFill.style.width = percent + '%';
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        }
+    }
+
+    progressBar.addEventListener("click", (e) => {
+        const rect = progressBar.getBoundingClientRect();
+        const pos = (e.clientX - rect.left) / rect.width;
+        audio.currentTime = pos * audio.duration;
+    });
+
+    playPauseBtn.addEventListener("click", () => {
+        if (audio.src) {
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+        }
+    });
+
+    audio.addEventListener("play", () => {
+        playPauseBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+        isPlaying = true;
+    });
+    audio.addEventListener("pause", () => {
+        playPauseBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+        isPlaying = false;
+    });
+
+    audio.addEventListener("loadedmetadata", () => {
+        durationEl.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener("timeupdate", updateProgress);
+
+    audio.addEventListener("ended", () => {
+        playPauseBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+        isPlaying = false;
+        progressFill.style.width = '0%';
+        currentTimeEl.textContent = '0:00';
+    });
+
+    playButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const src = btn.getAttribute("data-src");
+            const title = btn.getAttribute("data-title");
+
+            audio.src = src;
+            trackTitle.textContent = title;
+            audio.play();
+
+            playButtons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+        });
     });
 });

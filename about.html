@@ -31,11 +31,16 @@
         </div>
     </nav>
 
-    <section class="about-section py-5 animate-on-scroll">
-        <div class="container text-center">
-            <h2 class="mb-5">about</h2>
-            <div class="about-content mx-auto" style="max-width: 700px;">
-                <p class="lead">
+    <!-- ABOUT SECTION С ФОНОВЫМ ИЗОБРАЖЕНИЕМ -->
+    <section class="about-section position-relative animate-on-scroll">
+        <img src="gallery/img12.jpg" alt="Background" class="about-bg-image">
+
+        <!-- Overlay + Content -->
+        <div class="about-overlay"></div>
+        <div class="container position-relative text-center py-5">
+            <div class="about-content mx-auto" style="max-width: 700px; z-index: 2;">
+                <h2 class="mb-5 text-white">about</h2>
+                <p class="lead text-white">
                     <strong>a.l.i.v.e</strong> — my world is right here.
                 </p>
                 <button class="about-button btn mt-4" data-bs-toggle="modal" data-bs-target="#presaveModal">
@@ -45,6 +50,7 @@
         </div>
     </section>
 
+    <!-- Modal -->
     <div class="modal fade" id="presaveModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-dark text-white border-danger">
