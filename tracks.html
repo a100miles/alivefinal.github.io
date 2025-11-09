@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-black text-white">
+    <div id="preloader">
+        <div class="loader-text">a.l.i.v.e</div>
+    </div>
 
     <nav class="navbar navbar-expand-lg fixed-top nav-header">
         <div class="container-fluid nav-content">
@@ -34,13 +37,13 @@
 
         <div class="text-center mb-5 p-4 rounded shadow animate-on-scroll" style="background:rgba(255,255,255,0.05);">
             <h4 id="track-title" class="text-danger mb-3">Select a track</h4>
-            <audio id="main-audio" controls class="w-100" style="max-width:500px;"></audio>
+            <audio id="main-audio" controls class="w-100" style="max-width:500px;" controlsList="nodownload"></audio>
         </div>
 
         <div class="row row-cols-1 row-cols-md-2 g-4">
             <div class="col animate-on-scroll">
                 <button class="play-track w-100 text-start p-3 rounded shadow text-white d-flex align-items-center" 
-                        data-src="audio/140925.mp3" data-title="140925">
+                        data-src="audio/140925.wav" data-title="140925">
                     <span class="me-3 text-danger">01</span>
                     <span>140925</span>
                     <span class="ms-auto">play</span>
@@ -48,7 +51,7 @@
             </div>
             <div class="col animate-on-scroll">
                 <button class="play-track w-100 text-start p-3 rounded shadow text-white d-flex align-items-center" 
-                        data-src="audio/april.mp3" data-title="april">
+                        data-src="audio/april.wav" data-title="april">
                     <span class="me-3 text-danger">02</span>
                     <span>april</span>
                     <span class="ms-auto">play</span>
@@ -56,7 +59,7 @@
             </div>
             <div class="col animate-on-scroll">
                 <button class="play-track w-100 text-start p-3 rounded shadow text-white d-flex align-items-center" 
-                        data-src="audio/faraway.mp3" data-title="faraway">
+                        data-src="audio/faraway.wav" data-title="faraway">
                     <span class="me-3 text-danger">03</span>
                     <span>faraway</span>
                     <span class="ms-auto">play</span>
@@ -64,7 +67,7 @@
             </div>
             <div class="col animate-on-scroll">
                 <button class="play-track w-100 text-start p-3 rounded shadow text-white d-flex align-items-center" 
-                        data-src="audio/autumn.mp3" data-title="autumn">
+                        data-src="audio/autumn.wav" data-title="autumn">
                     <span class="me-3 text-danger">04</span>
                     <span>autumn</span>
                     <span class="ms-auto">play</span>
