@@ -1,6 +1,4 @@
-// script.js
 document.addEventListener("DOMContentLoaded", function () {
-    // === Preloader ===
     const preloader = document.getElementById("preloader");
     if (preloader) {
         window.addEventListener("load", () => {
@@ -11,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // === Smooth Scroll ===
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function (e) {
             const target = document.querySelector(this.getAttribute("href"));
@@ -25,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // === Navbar Scroll Effect ===
     const navbar = document.querySelector(".nav-header");
     if (navbar) {
         window.addEventListener("scroll", () => {
@@ -39,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // === Scroll Animations ===
     const animateOnScroll = () => {
         document.querySelectorAll(".animate-on-scroll").forEach(el => {
             const rect = el.getBoundingClientRect();
@@ -51,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", animateOnScroll);
     animateOnScroll();
 
-    // === Audio Player (tracks.html) ===
     const audioPlayer = document.getElementById("main-audio");
     const playButtons = document.querySelectorAll(".play-track");
     const trackTitle = document.getElementById("track-title");
@@ -61,23 +55,19 @@ document.addEventListener("DOMContentLoaded", function () {
             btn.addEventListener("click", () => {
                 const src = btn.getAttribute("data-src");
                 const title = btn.getAttribute("data-title");
-
                 audioPlayer.src = src;
                 trackTitle.textContent = title;
                 audioPlayer.play();
-
                 playButtons.forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
             });
         });
     }
 
-    // === COUNTDOWN (до 25 декабря 2025) ===
     const countdownDate = new Date("2025-12-25T00:00:00").getTime();
     const countdownFunction = setInterval(() => {
         const now = new Date().getTime();
         const distance = countdownDate - now;
-
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -93,4 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("countdown-timer").innerHTML = "<h3 class='text-success'>ALBUM IS OUT!</h3>";
         }
     }, 1000);
+
+    document.querySelectorAll('.gallery-thumb').forEach((img, index) => {
+        img.style.transitionDelay = `${index * 0.1}s`;
+    });
 });
